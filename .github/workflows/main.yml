@@ -1,15 +1,24 @@
-name: Check Java Version
+name: CI/CD
 
 on:
   workflow_dispatch:
 
 jobs:
-  check-java:
+  stage1-check-java-v-job:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Show Java version
         run: java -version
+
+  stage2-check-mvn-v-job:
+    needs: stage1-check-java   
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: show mvn version
+        run: mvn -v
