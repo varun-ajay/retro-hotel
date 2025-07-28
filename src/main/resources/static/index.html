@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Retro Hotel Manager</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="css/retro.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">🏨 Retro Hotel Manager</h1>
+
+    <section class="form-section">
+      <h2>Add Customer</h2>
+      <form id="customerForm">
+        <div class="field">
+          <label for="name">Customer Name</label>
+          <input id="name" name="name" type="text" placeholder="John Doe" required>
+        </div>
+
+        <div class="field">
+          <label for="phoneNumber">Phone Number</label>
+          <input id="phoneNumber" name="phoneNumber" type="text" placeholder="+1 234 567 890" required>
+        </div>
+
+        <div class="field">
+          <label for="checkInRoom">Check-in Room</label>
+          <input id="checkInRoom" name="checkInRoom" type="text" placeholder="101" required>
+        </div>
+
+        <button type="submit" class="btn">Add</button>
+      </form>
+      <div id="error" class="error hidden"></div>
+    </section>
+
+    <section class="table-section">
+      <h2>Customers</h2>
+      <table id="customersTable" class="retro-table">
+        <thead>
+          <tr>
+            <th>Customer Name</th>
+            <th>Phone Number</th>
+            <th>Check-in Room</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="customersBody">
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
