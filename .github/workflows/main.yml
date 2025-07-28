@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  stage1-check-java-v-job:
+  check-java-v-job:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -13,8 +13,8 @@ jobs:
       - name: Show Java version
         run: java -version
 
-  stage2-check-mvn-v-job:
-    needs: stage1-check-java-v-job  
+  check-mvn-v-job:
+    needs: check-java-v-job  
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -22,3 +22,19 @@ jobs:
 
       - name: show mvn version
         run: mvn -v
+
+  build:
+    needs: [check-java-v-job, check-mvn-v-job]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: building retro-hotel-project
+        run : mvn clean package spring-boot:repackage
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: retro-hotel-jar
+          path: target/*.jar
